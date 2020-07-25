@@ -9,6 +9,7 @@
   <script>
       let numGames = prompt("HOW MANY GAMES? Enter a number.");
       numGames = Number(numGames);
+      let gameResult = "";
       let userInput = "";
       let pcNumber = "";
       let pcInput = "";
@@ -19,19 +20,22 @@
       function rockPaperScissors(userInput, pcInput){
         if(userInput == pcInput)
         {
-            alert("It's a TIE! || USER: " + userInput + " || PC: " + pcInput);
-            return;
+            gameResult = ") TIE! || You: "
         }
 
         if(firstBeatSecond(userInput, pcInput))
         {
-            alert("USER WINS! || USER: " + userInput + " || PC: " + pcInput);
+            gameResult = ") You are VICTORIOUS! || YOU: ";
             userScore += 1;
-            return;
         }
+        if(firstBeatSecond(userInput, pcInput))
+        {
+            gameResult = ") You LOSE! || You: ";
+            pcScore += 1;
+        }
+       
 
-        alert("THE PC WINS! || USER: " + userInput + " || PC: " + pcInput);
-        pcScore += 1;
+        alert((i+1)+"("+ numGames + gameResult + userInput + " || PC: " + pcInput);
       }
 
       function firstBeatSecond(a, b){
@@ -57,7 +61,7 @@
       }
 
       function makeInput(){
-            userInput = prompt("ROCK, PAPER, or SCISSORS. (Case insensitive)");
+            userInput = prompt((i+1)+"("+numGames +") ROCK, PAPER, or SCISSORS. (Case insensitive)");
             userInput = userInput.toUpperCase();
 
             pcNumber = Math.floor(Math.random()*3);
@@ -71,7 +75,16 @@
             makeInput();
             rockPaperScissors(userInput, pcInput);
           }
-          alert("THE SCORE IS... || USER: " + userScore + " || PC: " + pcScore + " ||");
+          if(userScore > pcScore){
+            gameResult = "You are VICTORIOUS! || YOU: ";
+          }
+          if(userScore < pcScore){
+            gameResult = "You LOSE! || You: ";
+          }
+          else{
+            gameResult = "TIE! || You: "
+          }
+          alert(gameResult + userScore + " || PC: " + pcScore + " ||");
       }
 
       game(numGames);
