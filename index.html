@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Page Title</title>
+  <meta charset="UTF-8"/>
+</head>
+<body>
+  <h1 id="head">TeeHee</h1>
+  <script>
+      let numGames = promt("HOW MANY GAMES? Enter a number.");
+      numGames = Number(numGames);
+      let userInput = "";
+      let pcNumber = Math.floor(Math.random()*3);
+      let pcInput = "";
+      if(pcNumber == 0)
+        pcInput = "ROCK";
+      if(pcNumber == 1)
+        pcInput = "PAPER";
+      if(pcNumber == 2)
+        pcInput = "SCISSORS";
+
+
+      function rockPaperScissors(userInput, pcInput){
+        if(userInput == pcInput)
+        {
+            alert("It's a TIE! || USER: " + userInput + " || PC: " + pcInput);
+            return;
+        }
+
+        if(firstBeatSecond(userInput, pcInput))
+        {
+            alert("USER WINS! || USER: " + userInput + " || PC: " + pcInput);
+            return;
+        }
+
+        alert("THE PC WINS! || USER: " + userInput + " || PC: " + pcInput);
+      }
+
+      function firstBeatSecond(a, b){
+        if(a == "ROCK" && b == "SCISSORS")
+            return true;
+        
+        if(a == "PAPER" && b == "ROCK")
+            return true;
+
+        if(a == "SCISSORS" && b == "PAPER")
+            return true;
+
+        return false;
+      }
+
+      function game(numGames){
+          for(int i = 0; i < numGames; i++)
+          {
+            userInput = prompt("ROCK, PAPER, or SCISSORS. (Case insensitive)");
+            userInput = userInput.toUpperCase();
+              rockPaperScissors()
+          }
+      }
+
+      
+      rockPaperScissors(userInput, pcInput);
+  </script>
+</body>
+</html>
