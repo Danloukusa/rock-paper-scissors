@@ -7,18 +7,14 @@
 <body>
   <h1 id="head">TeeHee</h1>
   <script>
-      let numGames = promt("HOW MANY GAMES? Enter a number.");
+      let numGames = prompt("HOW MANY GAMES? Enter a number.");
       numGames = Number(numGames);
       let userInput = "";
-      let pcNumber = Math.floor(Math.random()*3);
+      let pcNumber = "";
       let pcInput = "";
-      if(pcNumber == 0)
-        pcInput = "ROCK";
-      if(pcNumber == 1)
-        pcInput = "PAPER";
-      if(pcNumber == 2)
-        pcInput = "SCISSORS";
-
+      let userScore = 0;
+      let pcScore = 0;
+      var i;
 
       function rockPaperScissors(userInput, pcInput){
         if(userInput == pcInput)
@@ -30,10 +26,12 @@
         if(firstBeatSecond(userInput, pcInput))
         {
             alert("USER WINS! || USER: " + userInput + " || PC: " + pcInput);
+            userScore += 1;
             return;
         }
 
         alert("THE PC WINS! || USER: " + userInput + " || PC: " + pcInput);
+        pcScore += 1;
       }
 
       function firstBeatSecond(a, b){
@@ -49,17 +47,34 @@
         return false;
       }
 
-      function game(numGames){
-          for(int i = 0; i < numGames; i++)
-          {
-            userInput = prompt("ROCK, PAPER, or SCISSORS. (Case insensitive)");
-            userInput = userInput.toUpperCase();
-              rockPaperScissors()
-          }
+      function botChoice(pcNumber){
+            if(pcNumber == 0)
+                pcInput = "ROCK";
+            if(pcNumber == 1)
+                pcInput = "PAPER";
+            if(pcNumber == 2)
+                pcInput = "SCISSORS";
       }
 
-      
-      rockPaperScissors(userInput, pcInput);
+      function makeInput(){
+            userInput = prompt("ROCK, PAPER, or SCISSORS. (Case insensitive)");
+            userInput = userInput.toUpperCase();
+
+            pcNumber = Math.floor(Math.random()*3);
+            botChoice(pcNumber);
+      }
+
+      function game(numGames){
+          alert("You have chosen " + numGames + " games. I hope you have time...");
+          for(i = 0; i < numGames; i++)
+          {
+            makeInput();
+            rockPaperScissors(userInput, pcInput);
+          }
+          alert("THE SCORE IS... || USER: " + userScore + " || PC: " + pcScore + " ||");
+      }
+
+      game(numGames);
   </script>
 </body>
 </html>
